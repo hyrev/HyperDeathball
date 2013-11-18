@@ -3,7 +3,8 @@ using System.Collections;
 
 enum powerupType
 {
-	speedUp = 0
+	speedUp = 0,
+	shrinkBall = 1
 };
 
 public class PowerupManager : MonoBehaviour
@@ -32,16 +33,28 @@ public class PowerupManager : MonoBehaviour
 	//creates a powerup of the specified type at a random location
 	private void createNewPowerup(powerupType type)
 	{
-		Vector3 powerupLocation = new Vector3(Random.Range(leftLimit, rightLimit), Random.Range(lowerLimit, upperLimit), 0);
+		int typeValue = (int)type;//just converting the enum to an int so we can compare it, address it and so on...
 		
-		switch(type)
-		{
-			case powerupType.speedUp:
-				Instantiate(prefabs[0], powerupLocation, new Quaternion(0f, 0f, 0f, 0f));
-				break;
-			
-			default:
-				throw new System.ArgumentException("invalid powerup type");
-		};
+		Vector3 powerupLocation = new Vector3(Random.Range(leftLimit, rightLimit), Random.Range(lowerLimit, upperLimit), 0);
+		//checking if the type of the power up is into the powerup array
+		if(typeValue < prefabs.Length){
+			Instantiate(prefabs[typeValue], powerupLocation, new Quaternion(0f, 0f, 0f, 0f));
+		}
+		else{
+			throw new System.ArgumentException("invalid powerup type");
+		}
+		
+//		switch(type)
+//		{
+//			case powerupType.speedUp:
+//				Instantiate(prefabs[0], powerupLocation, new Quaternion(0f, 0f, 0f, 0f));
+//				break;
+//			case powerupType.shrinkBall:
+//				Instantiate(prefabs[1], powerupLocation, new Quaternion(0f, 0f, 0f, 0f));
+//				break;
+//			
+//			default:
+//				throw new System.ArgumentException("invalid powerup type");
+//		};
 	}
 }
