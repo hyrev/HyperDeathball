@@ -19,6 +19,7 @@ public class BasePowerup : MonoBehaviour
 	void OnTriggerEnter(Collider c)
 	{
 		activate(c.gameObject);
+		PowerupManager.setPowerupOnScreen(false);
 		Destroy(gameObject);
 	}
 	

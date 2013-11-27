@@ -18,16 +18,31 @@ public class PowerupManager : MonoBehaviour
 	public float lowerLimit;
 	public float leftLimit;
 	public float rightLimit;
+	public float powerupTimerLimit = 2.0f;
+	public float powerupTimer;
+	private static bool powerupOnScreen;
 	
 	void Start()
 	{
 		//this is placeholder, we still need to write code to randomly spawn powerups
 		createNewPowerup(powerupType.speedUp);
+		powerupTimer = powerupTimerLimit;
 	}
 	
 	void Update()
 	{
-	
+		if(powerupTimer > 0){
+  			powerupTimer -= Time.deltaTime;
+ 		}
+		else{
+			Debug.Log("time up!");
+			if(!powerupOnScreen){//if there's no powerup showing up, it's time to create a new random powerup
+				createNewPowerup((powerupType)Random.Range(0, 2));
+			}
+			
+			powerupTimer = powerupTimerLimit;//reseting the powerup timer
+		}
+
 	}
 	
 	//creates a powerup of the specified type at a random location
@@ -44,6 +59,8 @@ public class PowerupManager : MonoBehaviour
 			throw new System.ArgumentException("invalid powerup type");
 		}
 		
+		powerupOnScreen = true;
+		
 //		switch(type)
 //		{
 //			case powerupType.speedUp:
@@ -56,5 +73,9 @@ public class PowerupManager : MonoBehaviour
 //			default:
 //				throw new System.ArgumentException("invalid powerup type");
 //		};
+	}
+	
+	public static void setPowerupOnScreen(bool value){
+		powerupOnScreen = value;
 	}
 }
