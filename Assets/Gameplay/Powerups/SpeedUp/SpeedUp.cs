@@ -3,14 +3,43 @@ using System.Collections;
 
 public class SpeedUp : BasePowerup
 {
-
+	public float speedModifier;
+	
 	void Start()
 	{
-	
+		base.Start();
+		
+		speedModifier = 2.5f;
 	}
 	
-	public override void activate(GameObject ball)
+	void Update()
 	{
-		ball.GetComponent<Ball>().changeBallSpeed(2.5f);	
+		base.Update();
+		
+		//If powerup's time is over, set the ball back to normal and destroy powerup
+		if(removePowerup){
+			
+			ball.changeSpeed(-speedModifier);
+			ball.changeMaterial(Color.white);
+			
+			PowerupManager.setPowerupOnScreen(false);
+			Destroy(gameObject);
+			
+			removePowerup = false;
+			Debug.Log("End of Powerup!");
+			
+		}
+	}
+	
+	public override void activate()
+	{
+		if(childActivated) return;
+		
+		Debug.Log("-Speed Up- Powerup!");
+		
+		ball.changeSpeed(speedModifier);
+		ball.changeMaterial(Color.red);
+		
+		childActivated = true;
 	}
 }

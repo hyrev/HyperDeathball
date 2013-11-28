@@ -18,15 +18,17 @@ public class PowerupManager : MonoBehaviour
 	public float lowerLimit;
 	public float leftLimit;
 	public float rightLimit;
-	public float powerupTimerLimit = 2.0f;
+	public float powerupTimerLimit;
 	public float powerupTimer;
 	private static bool powerupOnScreen;
 	
 	void Start()
 	{
+		powerupTimerLimit = 5f;
+		powerupTimer = powerupTimerLimit;
+		
 		//this is placeholder, we still need to write code to randomly spawn powerups
 		createNewPowerup(powerupType.speedUp);
-		powerupTimer = powerupTimerLimit;
 	}
 	
 	void Update()
@@ -35,7 +37,7 @@ public class PowerupManager : MonoBehaviour
   			powerupTimer -= Time.deltaTime;
  		}
 		else{
-			Debug.Log("time up!");
+			//Debug.Log("time up!");
 			if(!powerupOnScreen){//if there's no powerup showing up, it's time to create a new random powerup
 				createNewPowerup((powerupType)Random.Range(0, 2));
 			}
@@ -75,6 +77,7 @@ public class PowerupManager : MonoBehaviour
 //		};
 	}
 	
+	//Used by 'BasePowerup' class. It sets powerupOnScreen to false before destroying the powerup, so a new powerup can be created
 	public static void setPowerupOnScreen(bool value){
 		powerupOnScreen = value;
 	}
