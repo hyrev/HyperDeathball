@@ -33,13 +33,14 @@ public class SpeedUp : BasePowerup
 	
 	public override void activate()
 	{
-		if(childActivated) return;
-		
-		Debug.Log("-Speed Up- Powerup!");
-		
-		ball.changeSpeed(speedModifier);
-		ball.changeMaterial(Color.red);
-		
-		childActivated = true;
+		if(!childActivated)
+		{
+			Debug.Log("-Speed Up- Powerup!");
+			
+			ball.changeSpeed(speedModifier);
+			ball.changeMaterial(Color.red);
+			
+			childActivated = true;
+		}
 	}
 }

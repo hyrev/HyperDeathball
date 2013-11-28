@@ -32,31 +32,32 @@ public class BasePowerup : MonoBehaviour
 	{
 		transform.Rotate(rotationVelocity * Time.deltaTime);
 		
-		if(!activated) return;
-		
-		//Setting a timer for powerups, so the ball can go back to normal
-		if(timer > 0){
-  			timer -= Time.deltaTime;
- 		}
-		else{
-			removePowerup = true;
-			activated = false;
+		if(activated)
+		{ //Setting a timer for powerups, so the ball can go back to normal
+			if(timer > 0){
+	  			timer -= Time.deltaTime;
+	 		}
+			else{
+				removePowerup = true;
+				activated = false;
+			}
 		}
 	}
 	
 	void OnTriggerEnter(Collider c)
 	{
-		if(activated) return;
-		
-		ball = c.gameObject.GetComponent<Ball>();
-		
-		timer = timerLimit;
-		activated = true; //Powerup was actually activated (ball hit it)
-		
-		activate();
-		
-		//Setting visibility to false, powerup is destroyed only after its time is over.
-		gameObject.renderer.enabled = false;
+		if(!activated)
+		{			
+			ball = c.gameObject.GetComponent<Ball>();
+			
+			timer = timerLimit;
+			activated = true; //Powerup was actually activated (ball hit it)
+			
+			activate();
+			
+			//Setting visibility to false, powerup is destroyed only after its time is over.
+			gameObject.renderer.enabled = false;
+		}
 	}
 	
 	//DO NOT CALL THIS FUNCTION DIRECTLY

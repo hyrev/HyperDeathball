@@ -56,15 +56,17 @@ public class ShrinkBall : BasePowerup
 	
 	public override void activate()
 	{
-		if(childActivated) return;
+		if(!childActivated)
+		{
 		
-		Debug.Log("-Shrink Ball- Powerup!");
-		
-		originalSize = ball.renderer.bounds.size;
-		
-		ball.changeSize(sizeModifier);
-		ball.changeMaterial(Color.yellow);
-		
-		childActivated = true;
+			Debug.Log("-Shrink Ball- Powerup!");
+			
+			originalSize = ball.renderer.bounds.size;
+			
+			ball.changeSize(sizeModifier);
+			ball.changeMaterial(Color.yellow);
+			
+			childActivated = true;
+		}
 	}
 }
