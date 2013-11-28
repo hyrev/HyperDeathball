@@ -18,13 +18,14 @@ public class BasePowerup : MonoBehaviour
 	//Call this function from subclass: base.Start()
 	public void Start()
 	{
-		if(activated) return;
+		if(!activated){
 		
-		timerLimit = 10f;
-		removePowerup = false;
-		activated = false;
-		childActivated = false;
-		timer = timerLimit;
+			timerLimit = 10f;
+			removePowerup = false;
+			activated = false;
+			childActivated = false;
+			timer = timerLimit;
+		}
 	}
 	
 	//Call this function from subclass: base.Update()
