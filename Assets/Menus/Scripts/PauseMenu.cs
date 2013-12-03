@@ -35,7 +35,7 @@ public class PauseMenu : MonoBehaviour {
 	
 	bool togglePause() {
 		if(Time.timeScale == 0f) {
-			Time.timeScale = 1f;
+			Time.timeScale = 2f;
 			return(false);
 		} else {
 			Time.timeScale = 0f;
