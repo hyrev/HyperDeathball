@@ -1,10 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Menus\Scripts\PauseMenu.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Gameplay/Background/StarManager.cs">
     <Files>
-      <File FileName="Assets\Menus\Scripts\PauseMenu.cs" Line="29" Column="123" />
-      <File FileName="Assets\Menus\Scripts\MainMenu.cs" Line="25" Column="126" />
-      <File FileName="Assets\Gameplay\Player\TouchMovement.js" Line="1" Column="1" />
+      <File FileName="Assets/Gameplay/Background/StarManager.cs" Line="9" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
