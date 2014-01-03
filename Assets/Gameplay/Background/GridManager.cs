@@ -26,26 +26,14 @@ public class GridManager : MonoBehaviour
 				if(x != 0)
 				{
 					grid[x, y].GetComponent<GridCube>().leftNeighbour = grid[x-1, y].GetComponent<GridCube>();
+					grid[x-1, y].GetComponent<GridCube>().rightNeighbour = grid[x, y].GetComponent<GridCube>();
 				}
-				
-				/*
-				if(x != (gridWidth - 1))
-				{
-					grid[x, y].GetComponent<GridCube>().rightNeighbour = grid[x+1, y].GetComponent<GridCube>();
-				}
-				*/
 				
 				if(y != 0)
 				{
 					grid[x, y].GetComponent<GridCube>().topNeighbour = grid[x, y-1].GetComponent<GridCube>();
+					grid[x, y-1].GetComponent<GridCube>().bottomNeighbour = grid[x, y].GetComponent<GridCube>();
 				}
-				
-				/*
-				if(y != (gridHeight - 1))
-				{
-					grid[x, y].GetComponent<GridCube>().bottomNeighbour = grid[x, y+1].GetComponent<GridCube>();
-				}
-				*/
 			}
 		}
 	}
