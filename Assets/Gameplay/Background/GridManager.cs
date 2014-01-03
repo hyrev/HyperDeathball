@@ -9,9 +9,14 @@ public class GridManager : MonoBehaviour
 	public float cubeYOffset;		//how much space to leave between rows
 	
 	public GameObject[,] grid;		//xy grid of cubes, each with adjacencies
+	
+	private bool test;				//TEST VARIABLE! need to remove all instances of this and its associated code eventually!
 
 	void Start()
 	{
+		//TEST CODE!
+	 	test = false;
+	 	
 		//initialize grid and create GridCubes
 		grid = new GameObject[gridWidth, gridHeight];
 		for(int x = 0; x < gridWidth; x++)
@@ -40,6 +45,17 @@ public class GridManager : MonoBehaviour
 	
 	void Update()
 	{
+		//TEST CODE!
+		if(!test)
+		{
+			gridPulseFromLocation(gridWidth / 2, gridHeight / 2);
+			test = true;
+		}
+	}
 	
+	//given a grid point, pulse outward in all directions
+	public void gridPulseFromLocation(int posX, int posY)
+	{
+		grid[posX, posY].GetComponent<GridCube>().pulse();
 	}
 }
