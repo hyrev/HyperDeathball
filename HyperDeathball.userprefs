@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Gameplay/Background/Star.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Gameplay/Background/GridCube.cs">
     <Files>
-      <File FileName="Assets/Gameplay/Background/StarManager.cs" Line="26" Column="78" />
+      <File FileName="Assets/Gameplay/Background/StarManager.cs" Line="19" Column="70" />
       <File FileName="Assets/Gameplay/Background/Star.cs" Line="24" Column="36" />
+      <File FileName="Assets/Gameplay/Background/GridManager.cs" Line="56" Column="55" />
+      <File FileName="Assets/Gameplay/Background/GridCube.cs" Line="63" Column="86" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

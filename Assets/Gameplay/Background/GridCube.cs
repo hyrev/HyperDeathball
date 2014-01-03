@@ -27,6 +27,9 @@ public class GridCube : MonoBehaviour
 	{
 		if(currentStatus == PulseStatus.grow)
 		{
+			//unhide the cube
+			renderer.enabled = true;
+			
 			//scale the cube up
 			transform.localScale = new Vector3(transform.localScale.x + pulseIncrement, transform.localScale.y + pulseIncrement, transform.localScale.z + pulseIncrement);
 			
@@ -69,6 +72,11 @@ public class GridCube : MonoBehaviour
 			{
 				currentStatus = PulseStatus.idle;
 			}
+		}
+		else if(currentStatus == PulseStatus.idle)
+		{
+			//hide the cube when idle
+			renderer.enabled = false;
 		}
 	}
 	
