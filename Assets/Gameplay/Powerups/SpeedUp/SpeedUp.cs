@@ -5,14 +5,14 @@ public class SpeedUp : BasePowerup
 {
 	public float speedModifier;
 	
-	void Start()
+	new void Start()
 	{
 		base.Start();
 		
 		speedModifier = 2.5f;
 	}
 	
-	void Update()
+	new void Update()
 	{
 		base.Update();
 		

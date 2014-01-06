@@ -11,7 +11,7 @@ public class ShrinkBall : BasePowerup
 	public float growTimerLimit;
 	public float growTimer;
 	
-	void Start () {
+	new void Start () {
 		
 		base.Start();
 		
@@ -22,7 +22,7 @@ public class ShrinkBall : BasePowerup
 		
 	}
 	
-	void Update(){
+	new void Update(){
 		
 		base.Update();
 		

@@ -36,6 +36,14 @@ public class Ball : MonoBehaviour
 			currentAngle = Random.Range(15, 30);
 			transform.position = new Vector3(0, 0, 0);
 			rigidbody.velocity = calculateVelocity(speed, currentAngle);
+			
+			//pulse from left side
+			GridManager grid = GameObject.Find("GridManager").GetComponent<GridManager>();
+			grid.gridPulseFromLocation(0, grid.gridHeight / 2);
+			
+			//increment player 2's score
+			ScoreManager score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+			score.player1Scores();
 		}
 		
 		//ball has entered right player's net
@@ -44,6 +52,14 @@ public class Ball : MonoBehaviour
 			currentAngle = Random.Range(150, 165);
 			transform.position = new Vector3(0, 0, 0);
 			rigidbody.velocity = calculateVelocity(speed, currentAngle);
+			
+			//pulse from right side
+			GridManager grid = GameObject.Find("GridManager").GetComponent<GridManager>();
+			grid.gridPulseFromLocation(grid.gridWidth - 1, grid.gridHeight / 2);
+			
+			//increment player 2's score
+			ScoreManager score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+			score.player2Scores();
 		}
 	}
 	
