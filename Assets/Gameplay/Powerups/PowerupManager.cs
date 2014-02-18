@@ -20,15 +20,17 @@ public class PowerupManager : MonoBehaviour
 	public float rightLimit;
 	public float powerupTimerLimit;
 	public float powerupTimer;
-	private static bool powerupOnScreen;
+	public int maxActivePowerUps;
+	private static int numActivePowerUps;
 	
 	void Start()
 	{
 		powerupTimerLimit = 5f;
 		powerupTimer = powerupTimerLimit;
+		numActivePowerUps = 0;
 		
 		//this is placeholder, we still need to write code to randomly spawn powerups
-		createNewPowerup(powerupType.speedUp);
+		createNewPowerup((powerupType)Random.Range(0, 2));
 	}
 	
 	void Update()
@@ -38,7 +40,7 @@ public class PowerupManager : MonoBehaviour
  		}
 		else{
 			//Debug.Log("time up!");
-			if(!powerupOnScreen){//if there's no powerup showing up, it's time to create a new random powerup
+			if(numActivePowerUps <= maxActivePowerUps){//if there's no powerup showing up, it's time to create a new random powerup
 				createNewPowerup((powerupType)Random.Range(0, 2));
 			}
 			
@@ -60,25 +62,13 @@ public class PowerupManager : MonoBehaviour
 		else{
 			throw new System.ArgumentException("invalid powerup type");
 		}
-		
-		powerupOnScreen = true;
-		
-//		switch(type)
-//		{
-//			case powerupType.speedUp:
-//				Instantiate(prefabs[0], powerupLocation, new Quaternion(0f, 0f, 0f, 0f));
-//				break;
-//			case powerupType.shrinkBall:
-//				Instantiate(prefabs[1], powerupLocation, new Quaternion(0f, 0f, 0f, 0f));
-//				break;
-//			
-//			default:
-//				throw new System.ArgumentException("invalid powerup type");
-//		};
+		numActivePowerUps++;
 	}
 	
-	//Used by 'BasePowerup' class. It sets powerupOnScreen to false before destroying the powerup, so a new powerup can be created
+	//Used by 'BasePowerup' class. When false, it decreases numActivePowerUps
 	public static void setPowerupOnScreen(bool value){
-		powerupOnScreen = value;
+		if(!value) {
+			numActivePowerUps--;
+		}
 	}
 }
