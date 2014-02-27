@@ -54,7 +54,7 @@ public class PowerupManager : MonoBehaviour
 	{
 		int typeValue = (int)type;//just converting the enum to an int so we can compare it, address it and so on...
 		
-		Vector3 powerupLocation = new Vector3(Random.Range(leftLimit, rightLimit), Random.Range(lowerLimit, upperLimit), 0);
+		Vector3 powerupLocation = calculatePosition();
 		//checking if the type of the power up is into the powerup array
 		if(typeValue < prefabs.Length){
 			Instantiate(prefabs[typeValue], powerupLocation, new Quaternion(0f, 0f, 0f, 0f));
@@ -63,6 +63,16 @@ public class PowerupManager : MonoBehaviour
 			throw new System.ArgumentException("invalid powerup type");
 		}
 		numActivePowerUps++;
+	}
+
+	private Vector3 calculatePosition(){
+
+		Vector3 powerupLocation = new Vector3(Random.Range(leftLimit, rightLimit), Random.Range(lowerLimit, upperLimit), 0);
+		var existingObjs = Physics.OverlapSphere(powerupLocation, 1.5f);
+		if(existingObjs.Length > 0){
+			return calculatePosition();
+		}
+		return powerupLocation;
 	}
 	
 	//Used by 'BasePowerup' class. When false, it decreases numActivePowerUps
