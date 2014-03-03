@@ -10,6 +10,8 @@ public class ShrinkBall : BasePowerup
 	
 	public float growTimerLimit;
 	public float growTimer;
+
+	private static bool childActivated;
 	
 	new void Start () {
 		
@@ -40,13 +42,14 @@ public class ShrinkBall : BasePowerup
 			//If ball's size is back to normal, destroy powerup
 			if(ball.renderer.bounds.size == originalSize){
 				
-				ball.changeMaterial(Color.white);
+				ball.changeMaterial(Color.white, numActivated);
 				
 				PowerupManager.setPowerupOnScreen(false);
 				Destroy(gameObject);
 				
 				removePowerup = false;
-				Debug.Log("End of Powerup!");
+				childActivated = false;
+				//Debug.Log("-Shrink Ball- End of Powerup!");
 				
 			}
 			
@@ -58,6 +61,7 @@ public class ShrinkBall : BasePowerup
 	{
 		if(!childActivated)
 		{
+			activated = true; //Powerup was actually activated (ball hit it)
 		
 			Debug.Log("-Shrink Ball- Powerup!");
 			
@@ -67,6 +71,7 @@ public class ShrinkBall : BasePowerup
 			ball.changeMaterial(Color.yellow);
 			
 			childActivated = true;
+			++numActivated;
 		}
 	}
 }

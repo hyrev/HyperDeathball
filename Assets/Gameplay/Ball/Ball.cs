@@ -100,9 +100,11 @@ public class Ball : MonoBehaviour
 	}
 	
 	//Changes only the color for now
-	public void changeMaterial(Color color)
+	public void changeMaterial(Color color, float timer = 0)
 	{
-		renderer.material.color = color;
+		if (timer == 0) {
+			renderer.material.color = color;
+		}
 	}
 	
 	private float calculateDirection(float velocityInX, float velocityInY)

@@ -34,12 +34,12 @@ public class TouchMovement : MonoBehaviour {
 				if(Input.GetAxis("Mouse X")<-0.2){
 					//Code for action on mouse moving left
 					transform.Rotate(new Vector3(0,Input.GetAxis("Mouse X")*10,0));
-					print("Mouse moved left");
+					//print("Mouse moved left");
 				}
 				if(Input.GetAxis("Mouse X")>0.2){
 					//Code for action on mouse moving right
 					transform.Rotate(new Vector3(0,Input.GetAxis("Mouse X")*10,0));
-					print("Mouse moved right");
+					//print("Mouse moved right");
 				}
 			}
 		}

@@ -20,27 +20,24 @@ public class SpeedUp : BasePowerup
 		if(removePowerup){
 			
 			ball.changeSpeed(-speedModifier);
-			ball.changeMaterial(Color.white);
+			ball.changeMaterial(Color.white, numActivated);
 			
 			PowerupManager.setPowerupOnScreen(false);
 			Destroy(gameObject);
 			
 			removePowerup = false;
-			Debug.Log("End of Powerup!");
+			//Debug.Log("-Speed Up- End of Powerup!");
 			
 		}
 	}
 	
 	public override void activate()
 	{
-		if(!childActivated)
-		{
-			Debug.Log("-Speed Up- Powerup!");
-			
-			ball.changeSpeed(speedModifier);
-			ball.changeMaterial(Color.red);
-			
-			childActivated = true;
-		}
+		activated = true; //Powerup was actually activated (ball hit it)
+		++numActivated;
+		//Debug.Log("-Speed Up- Powerup!");
+		
+		ball.changeSpeed(speedModifier);
+		ball.changeMaterial(Color.red);
 	}
 }

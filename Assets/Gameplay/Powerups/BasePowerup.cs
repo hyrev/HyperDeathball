@@ -11,7 +11,7 @@ public class BasePowerup : MonoBehaviour
 	
 	public bool removePowerup;
 	public bool activated;
-	public bool childActivated;
+	public static int numActivated;
 	
 	public static Ball ball;
 	
@@ -23,7 +23,6 @@ public class BasePowerup : MonoBehaviour
 			timerLimit = 10f;
 			removePowerup = false;
 			activated = false;
-			childActivated = false;
 			timer = timerLimit;
 		}
 	}
@@ -41,6 +40,7 @@ public class BasePowerup : MonoBehaviour
 			else{
 				removePowerup = true;
 				activated = false;
+				--numActivated;
 			}
 		}
 	}
@@ -52,7 +52,6 @@ public class BasePowerup : MonoBehaviour
 			ball = c.gameObject.GetComponent<Ball>();
 			
 			timer = timerLimit;
-			activated = true; //Powerup was actually activated (ball hit it)
 			
 			activate();
 			
