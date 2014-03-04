@@ -11,7 +11,7 @@ public class GridCube : MonoBehaviour
 	public GridCube leftNeighbour;
 	public GridCube rightNeighbour;
 	
-	public enum PulseStatus {idle, grow, shrink};
+	public enum PulseStatus {idle, grow, shrink, active};
 	public PulseStatus currentStatus;
 	
 	private Vector3 initialScale;
@@ -77,11 +77,42 @@ public class GridCube : MonoBehaviour
 		{
 			//hide the cube when idle
 			renderer.enabled = false;
+			transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+		}
+		else if(currentStatus == PulseStatus.active)
+		{
+			//set colour to red and grow the cube to the active size
+			renderer.enabled = true;
+			renderer.material.color = Color.red;
+			
+			if(transform.localScale.x < (pulseScale / 1.1f))
+			{
+				//scale the cube up
+				transform.localScale = new Vector3(transform.localScale.x + pulseIncrement, transform.localScale.y + pulseIncrement, transform.localScale.z + pulseIncrement);
+			}
 		}
 	}
 	
 	public void pulse()
 	{
-		currentStatus = PulseStatus.grow;
+		if(currentStatus != PulseStatus.active)
+		{
+			currentStatus = PulseStatus.grow;
+		}	
+	}
+	
+	public void activate()
+	{
+		currentStatus = PulseStatus.active;
+	}
+	
+	public void deactivate()
+	{
+		currentStatus = PulseStatus.idle;
+		
+		//hide the cube when idle
+		renderer.enabled = false;
+		renderer.material.color = Color.white;
+		transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 	}
 }
