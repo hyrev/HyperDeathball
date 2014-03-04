@@ -27,6 +27,7 @@ public class PauseMenu : MonoBehaviour {
 			}
 			
 			if(GUI.Button(new Rect(Screen.width * 0.55f, Screen.height * 0.10f, Screen.width * 0.35f, Screen.height * 0.80f), "MAIN MENU")) {
+				isPaused = togglePause();
 				Application.LoadLevel("MainMenu");	
 			}
 		}
