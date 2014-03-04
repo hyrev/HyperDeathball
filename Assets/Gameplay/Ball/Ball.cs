@@ -100,9 +100,9 @@ public class Ball : MonoBehaviour
 	}
 	
 	//Changes only the color for now
-	public void changeMaterial(Color color, float timer = 0)
+	public void changeMaterial(Color color, float num = 0)
 	{
-		if (timer == 0) {
+		if (num == 0) {
 			renderer.material.color = color;
 		}
 	}

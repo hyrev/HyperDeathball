@@ -40,7 +40,6 @@ public class BasePowerup : MonoBehaviour
 			else{
 				removePowerup = true;
 				activated = false;
-				--numActivated;
 			}
 		}
 	}

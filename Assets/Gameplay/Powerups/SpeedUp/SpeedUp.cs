@@ -19,6 +19,8 @@ public class SpeedUp : BasePowerup
 		//If powerup's time is over, set the ball back to normal and destroy powerup
 		if(removePowerup){
 			
+			--numActivated;
+
 			ball.changeSpeed(-speedModifier);
 			ball.changeMaterial(Color.white, numActivated);
 			
@@ -26,13 +28,14 @@ public class SpeedUp : BasePowerup
 			Destroy(gameObject);
 			
 			removePowerup = false;
-			//Debug.Log("-Speed Up- End of Powerup!");
 			
 		}
 	}
 	
 	public override void activate()
 	{
+		//Debug.Log("-SpeedUp- Powerup!");
+
 		activated = true; //Powerup was actually activated (ball hit it)
 		++numActivated;
 		//Debug.Log("-Speed Up- Powerup!");
