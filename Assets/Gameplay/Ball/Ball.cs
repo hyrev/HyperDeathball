@@ -45,7 +45,7 @@ public class Ball : MonoBehaviour
 			
 			//increment player 2's score
 			ScoreManager score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
-			score.player1Scores();
+			score.player2Scores();
 		}
 		
 		//ball has entered right player's net
@@ -59,9 +59,9 @@ public class Ball : MonoBehaviour
 			GridManager grid = GameObject.Find("GridManager").GetComponent<GridManager>();
 			grid.gridPulseFromLocation(grid.gridWidth - 1, grid.gridHeight / 2);
 			
-			//increment player 2's score
+			//increment player 1's score
 			ScoreManager score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
-			score.player2Scores();
+			score.player1Scores();
 		}
 	}
 	
