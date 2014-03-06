@@ -28,11 +28,11 @@ public class GrowShield : BasePowerup {
 			
 			PowerupManager.setPowerupOnScreen(false);
 
-			Destroy(gameObject);
-			
 			removePowerup = false;
 
 			childActivated = false;
+
+			Destroy(gameObject);
 			
 		}
 	

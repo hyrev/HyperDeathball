@@ -10,8 +10,6 @@ public class ShrinkBall : BasePowerup
 	
 	public float growTimerLimit;
 	public float growTimer;
-
-	private static bool childActivated;
 	
 	new void Start () {
 		
@@ -19,6 +17,7 @@ public class ShrinkBall : BasePowerup
 		
 		sizeModifier = new Vector3(0.4f,0.4f,0.4f);
 		growSize = new Vector3(0.05f,0.05f,0.05f);
+		originalSize = new Vector3(1.0f,1.0f,1.0f);
 		growTimerLimit = 0.3f;
 		growTimer = growTimerLimit;
 		
@@ -30,29 +29,38 @@ public class ShrinkBall : BasePowerup
 		
 		//If powerup's time is over, set the ball back to normal and destroy powerup
 		if(removePowerup){
-			
-			if(growTimer > 0){
-	  			growTimer -= Time.deltaTime;
-	 		}
-			else{
-				ball.changeSize(ball.renderer.bounds.size + growSize); //Progressively grows ball back to normal
-				growTimer = growTimerLimit;
-			}
-			
-			//If ball's size is back to normal, destroy powerup
-			if(ball.renderer.bounds.size == originalSize){
-				
-				--numActivated;
 
-				ball.changeMaterial(Color.white, numActivated);
+			if(ball != null){
+			
+				if(growTimer > 0){
+		  			growTimer -= Time.deltaTime;
+		 		}
+				else{
+					ball.changeSize(ball.renderer.bounds.size + growSize); //Progressively grows ball back to normal
+					growTimer = growTimerLimit;
+				}
 				
+				//If ball's size is back to normal, destroy powerup
+				if(ball.renderer.bounds.size == originalSize){
+					
+					ball.removePowerUp("ShrinkBall");
+
+					ball.changeMaterial(Color.white);
+					
+					removePowerup = false;
+
+					PowerupManager.setPowerupOnScreen(false);
+
+					Destroy(gameObject);
+					
+				}
+
+			}else{
+
 				PowerupManager.setPowerupOnScreen(false);
-
-				Destroy(gameObject);
-				
 				removePowerup = false;
-				childActivated = false;
-				
+				Destroy(gameObject);
+
 			}
 			
 		}
@@ -61,19 +69,16 @@ public class ShrinkBall : BasePowerup
 	
 	public override void activate()
 	{
-		if(!childActivated)
+		if(!ball.containsPowerUp("ShrinkBall") && ball != null)
 		{
 			activated = true; //Powerup was actually activated (ball hit it)
 		
 			//Debug.Log("-Shrink Ball- Powerup!");
 			
-			originalSize = ball.renderer.bounds.size;
-			
 			ball.changeSize(sizeModifier);
 			ball.changeMaterial(Color.yellow);
-			
-			childActivated = true;
-			++numActivated;
+
+			ball.addPowerUp("ShrinkBall");
 		}
 	}
 }

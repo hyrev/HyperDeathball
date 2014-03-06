@@ -18,29 +18,40 @@ public class SpeedUp : BasePowerup
 		
 		//If powerup's time is over, set the ball back to normal and destroy powerup
 		if(removePowerup){
-			
-			--numActivated;
 
-			ball.changeSpeed(-speedModifier);
-			ball.changeMaterial(Color.white, numActivated);
+			if(ball != null){
 			
-			PowerupManager.setPowerupOnScreen(false);
-			Destroy(gameObject);
-			
-			removePowerup = false;
+				ball.removePowerUp("SpeedUp");
+
+				ball.changeSpeed(-speedModifier);
+				ball.changeMaterial(Color.white);
+				
+				removePowerup = false;
+
+				PowerupManager.setPowerupOnScreen(false);
+				Destroy(gameObject);
+
+			}
+			else{
+				removePowerup = false;
+				
+				PowerupManager.setPowerupOnScreen(false);
+				Destroy(gameObject);
+			}
 			
 		}
 	}
 	
 	public override void activate()
 	{
-		//Debug.Log("-SpeedUp- Powerup!");
+		if (ball != null) {
+			//Debug.Log("-SpeedUp- Powerup!");
+			activated = true; //Powerup was actually activated (ball hit it)
+			ball.changeMaterial (Color.red);
 
-		activated = true; //Powerup was actually activated (ball hit it)
-		++numActivated;
-		//Debug.Log("-Speed Up- Powerup!");
-		
-		ball.changeSpeed(speedModifier);
-		ball.changeMaterial(Color.red);
+			ball.changeSpeed (speedModifier);
+
+			ball.addPowerUp("SpeedUp");
+		}
 	}
 }

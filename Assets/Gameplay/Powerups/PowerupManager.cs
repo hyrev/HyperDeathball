@@ -5,7 +5,8 @@ enum powerupType
 {
 	speedUp = 0,
 	shrinkBall = 1,
-	growShield = 2
+	growShield = 2,
+	multiBall = 3
 };
 
 public class PowerupManager : MonoBehaviour
@@ -31,7 +32,7 @@ public class PowerupManager : MonoBehaviour
 		numActivePowerUps = 0;
 		
 		//this is placeholder, we still need to write code to randomly spawn powerups
-		createNewPowerup((powerupType)Random.Range(0, 3));
+		createNewPowerup((powerupType)3);
 	}
 	
 	void Update()
@@ -42,7 +43,7 @@ public class PowerupManager : MonoBehaviour
 		else{
 			//Debug.Log("time up!");
 			if(numActivePowerUps <= maxActivePowerUps){//if there's no powerup showing up, it's time to create a new random powerup
-				createNewPowerup((powerupType)Random.Range(0, 3));
+				createNewPowerup((powerupType)Random.Range(0, 4));
 			}
 			
 			powerupTimer = powerupTimerLimit;//reseting the powerup timer

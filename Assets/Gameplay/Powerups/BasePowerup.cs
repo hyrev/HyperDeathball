@@ -11,9 +11,8 @@ public class BasePowerup : MonoBehaviour
 	
 	public bool removePowerup;
 	public bool activated;
-	public static int numActivated;
 	
-	public static Ball ball;
+	public Ball ball;
 	
 	//Call this function from subclass: base.Start()
 	public void Start()

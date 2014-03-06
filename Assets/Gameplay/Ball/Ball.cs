@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Ball : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Ball : MonoBehaviour
 	public int rightScorePosition;
 	TrailRenderer trail;
 	public float trailLimit;
+	private List<string> powerUps = new List<string>();
 	
 	//Angle stored as DEGREES, convert to radians when necessary
 	private float currentAngle;
@@ -27,7 +29,7 @@ public class Ball : MonoBehaviour
 		rigidbody.velocity = calculateVelocity(speed, currentAngle);
 
 	}
-	
+
 	void FixedUpdate()
 	{
 		//ball has entered left player's net
@@ -80,6 +82,26 @@ public class Ball : MonoBehaviour
 		//increase ball speed
 		changeSpeed(bounceIncrement);
 	}
+
+	public void addPowerUp(string p){
+
+		powerUps.Add(p);
+
+		//Debug.Log("Added " + p + " to ball " + transform.name + ": " + powerUps.Count);
+
+	}
+
+	public bool containsPowerUp(string p){
+		return powerUps.Contains(p);
+	}
+
+	public void removePowerUp(string p){
+
+		powerUps.Remove(p);
+
+		//Debug.Log("Removed " + p + " from ball " + transform.name + ": " + powerUps.Count);
+
+	}
 	
 	//do not access the lastPlayer directly, use this
 	public GameObject getLastPlayer()
@@ -100,11 +122,17 @@ public class Ball : MonoBehaviour
 	}
 	
 	//Changes only the color for now
-	public void changeMaterial(Color color, float num = 0)
+	public void changeMaterial(Color color)
 	{
-		if (num == 0) {
+		if(powerUps.Count == 0 || color != Color.white){
 			renderer.material.color = color;
 		}
+	}
+
+	public void addCurrentSpeed(GameObject ball){
+
+		ball.GetComponent<Ball>().speed = speed;
+
 	}
 	
 	private float calculateDirection(float velocityInX, float velocityInY)
