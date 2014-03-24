@@ -86,9 +86,9 @@ public class MainMenu : MonoBehaviour {
 		shrinkBallToggle = 	GUI.Toggle (new Rect (Screen.width * 0.1f, Screen.height * 0.28f, Screen.width * 0.35f, 30), shrinkBallToggle, "SHRINK BALL");
 		growShieldToggle = 	GUI.Toggle (new Rect (Screen.width * 0.1f, Screen.height * 0.36f, Screen.width * 0.35f, 30), growShieldToggle, "GROW SHIELD");
 
-		speedUpValue = 		GUI.HorizontalSlider(new Rect(Screen.width * 0.5f, Screen.height * 0.22f, Screen.width * 0.35f, 30), speedUpValue, 0.0F, 1.0F);
-		shrinkBallValue = 	GUI.HorizontalSlider(new Rect(Screen.width * 0.5f, Screen.height * 0.30f, Screen.width * 0.35f, 30), shrinkBallValue, 0.0F, 1.0F);
-		growShieldValue =	GUI.HorizontalSlider(new Rect(Screen.width * 0.5f, Screen.height * 0.38f, Screen.width * 0.35f, 30), growShieldValue, 0.0F, 1.0F);
+		speedUpValue = 		GUI.HorizontalSlider(new Rect(Screen.width * 0.5f, Screen.height * 0.22f, Screen.width * 0.35f, 30), speedUpValue, 0.5F, 1.5F);
+		shrinkBallValue = 	GUI.HorizontalSlider(new Rect(Screen.width * 0.5f, Screen.height * 0.30f, Screen.width * 0.35f, 30), shrinkBallValue, 1.5F, 0.5F);
+		growShieldValue =	GUI.HorizontalSlider(new Rect(Screen.width * 0.5f, Screen.height * 0.38f, Screen.width * 0.35f, 30), growShieldValue, 0.5F, 1.5F);
 
 		//Cancel Button
 		if(GUI.Button(new Rect(Screen.width * 0.5f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "CANCEL")) {
@@ -117,23 +117,23 @@ public class MainMenu : MonoBehaviour {
 
 	//Load option values from OptionsContainer
 	void loadPowerUps() {
-		speedUpToggle = 	options.GetComponent<OptionsContainer>().speedUpToggle;
-		shrinkBallToggle = 	options.GetComponent<OptionsContainer>().shrinkBallToggle;
-		growShieldToggle = 	options.GetComponent<OptionsContainer>().growShieldToggle;
+		speedUpToggle = 	options.GetComponent<OptionsContainer>().toggles[0];
+		shrinkBallToggle = 	options.GetComponent<OptionsContainer>().toggles[1];
+		growShieldToggle = 	options.GetComponent<OptionsContainer>().toggles[2];
 		
-		speedUpValue =	 	options.GetComponent<OptionsContainer>().speedUpValue;
-		shrinkBallValue =		options.GetComponent<OptionsContainer>().shrinkBallValue;
-		growShieldValue = 	options.GetComponent<OptionsContainer>().growShieldValue;
+		speedUpValue =	 	options.GetComponent<OptionsContainer>().values[0];
+		shrinkBallValue =	options.GetComponent<OptionsContainer>().values[1];
+		growShieldValue = 	options.GetComponent<OptionsContainer>().values[2];
 	}
 
 	//Save option values to OptionsContainer
 	void savePowerUps() {
-		options.GetComponent<OptionsContainer>().speedUpToggle = speedUpToggle;
-		options.GetComponent<OptionsContainer>().shrinkBallToggle = shrinkBallToggle;
-		options.GetComponent<OptionsContainer>().growShieldToggle = growShieldToggle;
+		options.GetComponent<OptionsContainer>().toggles[0] = speedUpToggle;
+		options.GetComponent<OptionsContainer>().toggles[1] = shrinkBallToggle;
+		options.GetComponent<OptionsContainer>().toggles[2] = growShieldToggle;
 		
-		options.GetComponent<OptionsContainer>().speedUpValue = speedUpValue;
-		options.GetComponent<OptionsContainer>().shrinkBallValue = shrinkBallValue;
-		options.GetComponent<OptionsContainer>().growShieldValue = growShieldValue;
+		options.GetComponent<OptionsContainer>().values[0] = speedUpValue;
+		options.GetComponent<OptionsContainer>().values[1] = shrinkBallValue;
+		options.GetComponent<OptionsContainer>().values[2] = growShieldValue;
 	}
 }

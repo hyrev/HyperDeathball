@@ -14,8 +14,10 @@ public class ShrinkBall : BasePowerup
 	new void Start () {
 		
 		base.Start();
-		
+
+		float optionsModifier = GameObject.Find ("OptionsContainer").GetComponent<OptionsContainer>().values[1];
 		sizeModifier = new Vector3(0.4f,0.4f,0.4f);
+		sizeModifier = sizeModifier * optionsModifier;
 		growSize = new Vector3(0.05f,0.05f,0.05f);
 		originalSize = new Vector3(1.0f,1.0f,1.0f);
 		growTimerLimit = 0.3f;

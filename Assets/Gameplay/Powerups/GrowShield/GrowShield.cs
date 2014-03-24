@@ -12,8 +12,9 @@ public class GrowShield : BasePowerup {
 	new void Start () {
 
 		base.Start ();
-
-		sizeModifier = new Vector3(0.5f,0.5f,5f);
+		
+		float optionsModifier = GameObject.Find ("OptionsContainer").GetComponent<OptionsContainer>().values[2];
+		sizeModifier = new Vector3(0.5f,0.5f,optionsModifier*5f);
 		originalSize = new Vector3(0.5f,0.5f,2.5f);
 	
 	}

@@ -24,15 +24,33 @@ public class PowerupManager : MonoBehaviour
 	public float powerupTimer;
 	public int maxActivePowerUps;
 	private static int numActivePowerUps;
+
+	private bool[] enabledList;
+	private bool allPowerupsDisabled;
 	
 	void Start()
 	{
+
 		powerupTimerLimit = 5f;
 		powerupTimer = powerupTimerLimit;
 		numActivePowerUps = 0;
-		
-		//this is placeholder, we still need to write code to randomly spawn powerups
-		createNewPowerup((powerupType)3);
+		enabledList = GameObject.Find ("OptionsContainer").GetComponent<OptionsContainer>().toggles;
+
+		allPowerupsDisabled = true;
+		for(int i = 0; i < enabledList.Length; i++) {
+			if(enabledList[i]) {
+				allPowerupsDisabled = false;
+			}
+		}
+
+		if(!allPowerupsDisabled) {
+			int powerupToSpawn = Random.Range(0, 4);
+			while(!enabledList[powerupToSpawn]){
+				powerupToSpawn = Random.Range(0, 4);
+			}
+			//this is placeholder, we still need to write code to randomly spawn powerups
+			createNewPowerup((powerupType)powerupToSpawn);
+		}
 	}
 	
 	void Update()
@@ -43,7 +61,14 @@ public class PowerupManager : MonoBehaviour
 		else{
 			//Debug.Log("time up!");
 			if(numActivePowerUps <= maxActivePowerUps){//if there's no powerup showing up, it's time to create a new random powerup
-				createNewPowerup((powerupType)Random.Range(0, 4));
+				if(!allPowerupsDisabled) {
+					int powerupToSpawn = Random.Range(0, 4);
+					while(!enabledList[powerupToSpawn]){
+						powerupToSpawn = Random.Range(0, 4);
+					}
+					//this is placeholder, we still need to write code to randomly spawn powerups
+					createNewPowerup((powerupType)powerupToSpawn);
+				}
 			}
 			
 			powerupTimer = powerupTimerLimit;//reseting the powerup timer

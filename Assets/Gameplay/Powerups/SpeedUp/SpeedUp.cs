@@ -8,8 +8,8 @@ public class SpeedUp : BasePowerup
 	new void Start()
 	{
 		base.Start();
-		
-		speedModifier = 2.5f;
+		float optionsModifier = GameObject.Find ("OptionsContainer").GetComponent<OptionsContainer>().values[0];
+		speedModifier = optionsModifier * 2.5f;
 	}
 	
 	new void Update()

@@ -6,13 +6,8 @@ public class OptionsContainer : MonoBehaviour {
 	public float volumeValue = 0.5f;
 
 	//Powerups menu values
-	public bool speedUpToggle = true;
-	public bool shrinkBallToggle = true;
-	public bool growShieldToggle = true;
-	
-	public float speedUpValue = 1f;
-	public float shrinkBallValue = 1f;
-	public float growShieldValue = 1f;
+	public bool[] toggles;
+	public float[] values;
 
 	// Use this for initialization
 	void Start () {
