@@ -34,7 +34,7 @@ public class PowerupManager : MonoBehaviour
 		powerupTimerLimit = 5f;
 		powerupTimer = powerupTimerLimit;
 		numActivePowerUps = 0;
-		enabledList = GameObject.Find ("OptionsContainer").GetComponent<OptionsContainer>().toggles;
+		enabledList = GameObject.Find("OptionsContainer").GetComponent<OptionsContainer>().toggles;
 
 		allPowerupsDisabled = true;
 		for(int i = 0; i < enabledList.Length; i++) {

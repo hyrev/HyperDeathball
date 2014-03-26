@@ -15,16 +15,25 @@ public class GridCube : MonoBehaviour
 	public PulseStatus currentStatus;
 	
 	private Vector3 initialScale;
+	
+	private int cooldown;				//used to prevent pulse feedback from causing repeated waves
 
 	void Start()
 	{
 		//init as idle and set the base scale
 		currentStatus = PulseStatus.idle;
 		initialScale = transform.localScale;
+		
+		cooldown = 0;
 	}
 	
 	void Update()
 	{
+		if(cooldown > 0)
+		{
+			cooldown--;
+		}
+	
 		if(currentStatus == PulseStatus.grow)
 		{
 			//unhide the cube
@@ -70,6 +79,7 @@ public class GridCube : MonoBehaviour
 			}
 			else
 			{
+				cooldown = 50;
 				currentStatus = PulseStatus.idle;
 			}
 		}
@@ -95,7 +105,7 @@ public class GridCube : MonoBehaviour
 	
 	public void pulse()
 	{
-		if(currentStatus != PulseStatus.active)
+		if(currentStatus != PulseStatus.active && cooldown == 0)
 		{
 			currentStatus = PulseStatus.grow;
 		}	
