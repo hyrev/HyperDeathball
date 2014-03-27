@@ -31,13 +31,13 @@ public class ScoreManager : MonoBehaviour
 		//player 1 wins
 		if(player1Score >= winningScore)
 		{
-		
+			this.GetComponent<GameOver>().gameOver(true);
 		}
 		
 		//player 2 wins
 		if(player2Score >= winningScore)
 		{
-		
+			this.GetComponent<GameOver>().gameOver(false);
 		}
 	}
 	

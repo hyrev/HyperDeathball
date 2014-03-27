@@ -79,7 +79,7 @@ public class GridCube : MonoBehaviour
 			}
 			else
 			{
-				cooldown = 50;
+				cooldown = 60;
 				currentStatus = PulseStatus.idle;
 			}
 		}
