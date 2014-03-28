@@ -44,7 +44,7 @@ public class GrowShield : BasePowerup {
 		if (!childActivated) {
 
 			//Debug.Log("-GrowShield- Powerup!");
-			shield = GameObject.Find("Player1");
+			shield = ball.getLastPlayer();
 
 			shield.transform.localScale = sizeModifier;
 

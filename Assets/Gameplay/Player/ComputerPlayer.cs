@@ -4,6 +4,7 @@ using System.Collections;
 public class ComputerPlayer : Player
 {
 	public Rigidbody ball;
+	public bool smarterAI;
 	
 	void Start()
 	{
@@ -11,6 +12,18 @@ public class ComputerPlayer : Player
 	}
 	
 	void Update()
+	{
+		if(!smarterAI)
+		{
+			easyMode();
+		}
+		else
+		{
+			hardMode();
+		}
+	}
+	
+	private void easyMode()
 	{
 		//If the ball is above the computer player, move up without leaving the playing area
 		if(ball.position.y > transform.position.y)
@@ -35,5 +48,10 @@ public class ComputerPlayer : Player
 			Vector3 temp = new Vector3(transform.position.x, bottomBounds, transform.position.z);
 			transform.position = temp;	
 		}
+	}
+	
+	private void hardMode()
+	{
+	
 	}
 }
