@@ -25,7 +25,7 @@ public class Ball : MonoBehaviour
 		trailLimit =  0.6f;
 		
 		//Initialize the velocity of the ball based on the preset speed and a randomly generated angle
-		currentAngle = Random.Range(150, 170);
+		currentAngle = Random.Range(150, 210);
 		rigidbody.velocity = calculateVelocity(speed, currentAngle);
 
 	}
@@ -35,7 +35,7 @@ public class Ball : MonoBehaviour
 		//ball has entered left player's net
 		if(transform.position.x < leftScorePosition)
 		{
-			currentAngle = Random.Range(15, 30);
+			currentAngle = Random.Range(-30, 30);
 			transform.position = new Vector3(0, 0, 0);
 			rigidbody.velocity = calculateVelocity(speed, currentAngle);
 			
@@ -51,7 +51,7 @@ public class Ball : MonoBehaviour
 		//ball has entered right player's net
 		if(transform.position.x > rightScorePosition)
 		{
-			currentAngle = Random.Range(150, 165);
+			currentAngle = Random.Range(150, 210);
 			transform.position = new Vector3(0, 0, 0);
 			rigidbody.velocity = calculateVelocity(speed, currentAngle);
 			
