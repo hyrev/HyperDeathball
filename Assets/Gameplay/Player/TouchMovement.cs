@@ -31,16 +31,7 @@ public class TouchMovement : MonoBehaviour {
 				Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint);
 				transform.position = new Vector3(paddle.position.x,curPosition.y,0);
 
-				if(Input.GetAxis("Mouse X")<-0.2){
-					//Code for action on mouse moving left
-					transform.Rotate(new Vector3(0,Input.GetAxis("Mouse X")*10,0));
-					//print("Mouse moved left");
-				}
-				if(Input.GetAxis("Mouse X")>0.2){
-					//Code for action on mouse moving right
-					transform.Rotate(new Vector3(0,Input.GetAxis("Mouse X")*10,0));
-					//print("Mouse moved right");
-				}
+				transform.Rotate(new Vector3(0,0,Input.GetAxis("Mouse X")*10));
 			}
 		}
 	}

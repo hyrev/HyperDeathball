@@ -5,6 +5,9 @@ public class ComputerPlayer : Player
 {
 	public Rigidbody ball;
 	public bool smarterAI;
+	public int smartness;
+	
+	private Vector3 destination;
 	
 	void Start()
 	{
@@ -15,7 +18,7 @@ public class ComputerPlayer : Player
 	{
 		if(!smarterAI)
 		{
-			easyMode();
+			easyMode(ball.position);
 		}
 		else
 		{
@@ -23,10 +26,10 @@ public class ComputerPlayer : Player
 		}
 	}
 	
-	private void easyMode()
+	private void easyMode(Vector3 dest)
 	{
 		//If the ball is above the computer player, move up without leaving the playing area
-		if(ball.position.y > transform.position.y)
+		if(dest.y > transform.position.y)
 		{
 			transform.Translate(new Vector3(0, speed, 0) * Time.deltaTime);	
 		}
@@ -38,7 +41,7 @@ public class ComputerPlayer : Player
 		}
 		
 		//If the ball is below the computer player, move down without leaving the playing area
-		if(ball.position.y < transform.position.y)
+		if(dest.y < transform.position.y)
 		{
 			transform.Translate(new Vector3(0, -speed, 0) * Time.deltaTime);	
 		}
@@ -52,6 +55,13 @@ public class ComputerPlayer : Player
 	
 	private void hardMode()
 	{
-	
+		if(destination != null)
+		{
+			
+		}
+		else
+		{
+			easyMode(ball.position);
+		}
 	}
 }
