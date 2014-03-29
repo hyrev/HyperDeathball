@@ -17,6 +17,7 @@ public class Ball : MonoBehaviour
 	private float currentAngle;
 	
 	private GameObject lastCollidedPlayer;
+	private float currentSpeed;
 
 	void Start()
 	{
@@ -26,8 +27,8 @@ public class Ball : MonoBehaviour
 		
 		//Initialize the velocity of the ball based on the preset speed and a randomly generated angle
 		currentAngle = Random.Range(150, 210);
-		rigidbody.velocity = calculateVelocity(speed, currentAngle);
-
+		currentSpeed = 0;
+		rigidbody.velocity = calculateVelocity(currentSpeed, currentAngle);
 	}
 
 	void FixedUpdate()
@@ -35,9 +36,10 @@ public class Ball : MonoBehaviour
 		//ball has entered left player's net
 		if(transform.position.x < leftScorePosition)
 		{
+			currentSpeed = 0;
 			currentAngle = Random.Range(-30, 30);
 			transform.position = new Vector3(0, 0, 0);
-			rigidbody.velocity = calculateVelocity(speed, currentAngle);
+			rigidbody.velocity = calculateVelocity(currentSpeed, currentAngle);
 			
 			//pulse from left side
 			GridManager grid = GameObject.Find("GridManager").GetComponent<GridManager>();
@@ -51,9 +53,10 @@ public class Ball : MonoBehaviour
 		//ball has entered right player's net
 		if(transform.position.x > rightScorePosition)
 		{
+			currentSpeed = 0;
 			currentAngle = Random.Range(150, 210);
 			transform.position = new Vector3(0, 0, 0);
-			rigidbody.velocity = calculateVelocity(speed, currentAngle);
+			rigidbody.velocity = calculateVelocity(currentSpeed, currentAngle);
 			
 			//pulse from right side
 			GridManager grid = GameObject.Find("GridManager").GetComponent<GridManager>();
@@ -62,6 +65,13 @@ public class Ball : MonoBehaviour
 			//increment player 1's score
 			ScoreManager score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 			score.player1Scores();
+		}
+		
+		//gradually accumulate speed every time the ball respawns
+		if(currentSpeed < speed)
+		{
+			currentSpeed = currentSpeed + 0.01f;
+			rigidbody.velocity = calculateVelocity(currentSpeed, currentAngle);
 		}
 	}
 	
@@ -112,7 +122,6 @@ public class Ball : MonoBehaviour
 	public void changeSpeed(float speedModifier)
 	{
 		speed = speed + speedModifier;
-		rigidbody.velocity = calculateVelocity(speed, currentAngle);
 	}
 	
 	public void changeSize(Vector3 sizeModifier)
@@ -131,7 +140,7 @@ public class Ball : MonoBehaviour
 
 	public void addCurrentSpeed(GameObject ball){
 
-		ball.GetComponent<Ball>().speed = speed;
+		ball.GetComponent<Ball>().speed = currentSpeed;
 
 	}
 	
