@@ -3,9 +3,10 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
-	public GameObject options;
+
 	public GUISkin guiStyle;
 	private string currentMenu;
+	private GameObject options;
 
 	//Options menu values
 	private float volumeValue;
@@ -20,6 +21,7 @@ public class MainMenu : MonoBehaviour {
 	private float growShieldValue;
 
 	void Start() {
+		options = GameObject.FindGameObjectWithTag("OptionsContainer");
 		Time.timeScale = 2f;
 		currentMenu = "main";
 		loadOptions();

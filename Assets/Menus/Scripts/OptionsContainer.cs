@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class OptionsContainer : MonoBehaviour {
+	//Included to make sure we don't double up the options container
+	public static OptionsContainer Instance;
+
 	//Options menu values
 	public float volumeValue = 0.5f;
 
@@ -9,13 +12,12 @@ public class OptionsContainer : MonoBehaviour {
 	public bool[] toggles;
 	public float[] values;
 
-	// Use this for initialization
-	void Start () {
-		DontDestroyOnLoad(this);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void Awake() {
+		if(Instance) {
+			DestroyImmediate(gameObject);
+		} else {
+			DontDestroyOnLoad(this);
+			Instance = this;
+		}
 	}
 }
