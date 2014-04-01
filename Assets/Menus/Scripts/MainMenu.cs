@@ -46,13 +46,17 @@ public class MainMenu : MonoBehaviour {
 			
 			if(GUI.Button(new Rect(Screen.width * 0.525f, Screen.height * 0.7f, Screen.width * 0.425f, Screen.height * 0.25f), "CREDITS")) {
 				//Because we need to be recognised for our hard work
+				currentMenu = "credits";
 
 			}
 		} else if(currentMenu == "options") {
 			optionsMenu();
 		}else if(currentMenu == "powerups") {
 			powerUpMenu();
+		}else if(currentMenu == "credits") {
+			creditsMenu();
 		}
+		
         GUI.EndGroup();
     }
 
@@ -102,6 +106,25 @@ public class MainMenu : MonoBehaviour {
 			//Save and return to options menu
 			savePowerUps();
 			currentMenu = "options";
+		}
+	}
+	
+	void creditsMenu() {
+		GUI.Box(new Rect(Screen.width * 0.05f,Screen.height * 0.05f,Screen.width * 0.90f,Screen.height * 0.90f), "CREDITS");
+		
+		//credits list
+		GUI.Label(new Rect(Screen.width * 0.25f,Screen.height * 0.15f,Screen.width * 0.5f,Screen.height * 0.1f), "Lead Programmer");
+		GUI.Label(new Rect(Screen.width * 0.25f,Screen.height * 0.22f,Screen.width * 0.5f,Screen.height * 0.1f), "Jake Stephens");
+		GUI.Label(new Rect(Screen.width * 0.25f,Screen.height * 0.32f,Screen.width * 0.5f,Screen.height * 0.1f), "Additional Programming");
+		GUI.Label(new Rect(Screen.width * 0.25f,Screen.height * 0.39f,Screen.width * 0.5f,Screen.height * 0.1f), "Brian Dinelt");
+		GUI.Label(new Rect(Screen.width * 0.25f,Screen.height * 0.45f,Screen.width * 0.5f,Screen.height * 0.1f), "Thais Correia");
+		GUI.Label(new Rect(Screen.width * 0.25f,Screen.height * 0.52f,Screen.width * 0.5f,Screen.height * 0.1f), "Francisco Ari Josino");
+		
+		//Back Button
+		if(GUI.Button(new Rect(Screen.width * 0.325f, Screen.height * 0.65f, Screen.width * 0.35f, Screen.height * 0.25f), "MAIN MENU")) {
+			//Return to main menu
+			saveOptions();
+			currentMenu = "main";
 		}
 	}
 
