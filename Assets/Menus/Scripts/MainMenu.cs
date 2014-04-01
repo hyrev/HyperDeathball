@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour {
 	private float growShieldValue;
 
 	void Start() {
+		Time.timeScale = 2f;
 		currentMenu = "main";
 		loadOptions();
 		loadPowerUps();
