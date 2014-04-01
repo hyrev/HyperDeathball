@@ -18,6 +18,7 @@ public class Ball : MonoBehaviour
 	
 	private GameObject lastCollidedPlayer;
 	private float currentSpeed;
+	private bool colliding;
 
 	void Start()
 	{
@@ -29,6 +30,8 @@ public class Ball : MonoBehaviour
 		currentAngle = Random.Range(150, 210);
 		currentSpeed = 0;
 		rigidbody.velocity = calculateVelocity(currentSpeed, currentAngle);
+		
+		colliding = false;
 	}
 
 	void FixedUpdate()
@@ -68,7 +71,7 @@ public class Ball : MonoBehaviour
 		}
 		
 		//gradually accumulate speed every time the ball respawns
-		if(currentSpeed < speed)
+		if(currentSpeed < speed && !colliding)
 		{
 			currentSpeed = currentSpeed + 0.01f;
 			rigidbody.velocity = calculateVelocity(currentSpeed, currentAngle);
@@ -82,6 +85,8 @@ public class Ball : MonoBehaviour
 		{
 			lastCollidedPlayer = c.gameObject;
 		}
+		
+		colliding = true;
 	}
 	
 	void OnCollisionExit(Collision c)
@@ -91,6 +96,8 @@ public class Ball : MonoBehaviour
 
 		//increase ball speed
 		changeSpeed(bounceIncrement);
+		
+		colliding = false;
 	}
 
 	public void addPowerUp(string p){
