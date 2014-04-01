@@ -36,8 +36,7 @@ public class MainMenu : MonoBehaviour {
 			}
 			
 			if(GUI.Button(new Rect(Screen.width * 0.525f, Screen.height * 0.05f, Screen.width * 0.425f, Screen.height * 0.6f), "MULTI PLAYER")) {
-				//Load multiplayer portion using this format:
-				//Application.LoadLevel("Multiplayer");	
+				Application.LoadLevel("Multiplayer");	
 			}
 			
 			if(GUI.Button(new Rect(Screen.width * 0.05f, Screen.height * 0.7f, Screen.width * 0.425f, Screen.height * 0.25f), "OPTIONS")) {
