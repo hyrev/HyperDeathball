@@ -38,17 +38,15 @@ public class MultiTouchMovement : MonoBehaviour {
 				//If we have hit the input, calculate where the paddle should be
 				if(touchNum != 0){
 					Vector3 curScreenPoint = new Vector3(Input.mousePosition.x,Input.mousePosition.y,Camera.main.transform.position.z * -1);
-					transform.position = Camera.main.ScreenToWorldPoint(curScreenPoint);
-
-					Vector3 newPos = (transform.position + otherInput.transform.position) * 0.5f;
+					curScreenPoint = Camera.main.ScreenToWorldPoint(curScreenPoint);
+					curScreenPoint.z = 0;
+					transform.position = curScreenPoint;
+					Vector3 newPos = (transform.position + otherInput.transform.position) / 2.0f;
 
 					if(newPos.x < rightMovementMax && newPos.x > leftMovementMax) {
-						//A bit of weirdness here but it stops the second input from flipping out
-						if(name == "Touch Input 1") {
-							player.transform.rotation = Quaternion.LookRotation(otherInput.transform.position - transform.position, Vector3.forward);
-						} else {
-							player.transform.rotation = Quaternion.LookRotation(transform.position - otherInput.transform.position, Vector3.forward);
-						}
+						Vector3 lookPos =  (Vector3.Cross (transform.position-newPos, Vector3.forward)).normalized;
+						lookPos.z = 0;
+						player.transform.rotation = Quaternion.LookRotation(lookPos);
 						player.transform.position = newPos;
 					}
 
@@ -61,6 +59,6 @@ public class MultiTouchMovement : MonoBehaviour {
 	}
 
 	void SnapBack() {
-		transform.localPosition = new Vector3(0,0, snapHeight);
+		transform.localPosition = new Vector3(0,snapHeight, 0);
 	}
 }
