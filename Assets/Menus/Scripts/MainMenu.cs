@@ -27,6 +27,12 @@ public class MainMenu : MonoBehaviour {
 		loadOptions();
 		loadPowerUps();
 	}
+
+	void Update() {
+		if (currentMenu == "options") {
+			saveOptions();
+		}
+	}
 	
 	void OnGUI() {
 		GUI.skin = guiStyle;
@@ -72,13 +78,11 @@ public class MainMenu : MonoBehaviour {
 		//Back Button
 		if(GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.5f, Screen.width * 0.35f, Screen.height * 0.25f), "MAIN MENU")) {
 			//Return to main menu
-			saveOptions();
 			currentMenu = "main";
 		}
 
 		//Powerup Options Button
 		if(GUI.Button(new Rect(Screen.width * 0.55f, Screen.height * 0.5f, Screen.width * 0.35f, Screen.height * 0.25f), "POWERUP OPTIONS")) {
-			saveOptions();
 			currentMenu = "powerups";
 		}
 	}
@@ -125,7 +129,6 @@ public class MainMenu : MonoBehaviour {
 		//Back Button
 		if(GUI.Button(new Rect(Screen.width * 0.325f, Screen.height * 0.65f, Screen.width * 0.35f, Screen.height * 0.25f), "MAIN MENU")) {
 			//Return to main menu
-			saveOptions();
 			currentMenu = "main";
 		}
 	}

@@ -20,4 +20,8 @@ public class OptionsContainer : MonoBehaviour {
 			Instance = this;
 		}
 	}
+
+	void Update () {
+		AudioListener.volume = volumeValue;
+	}
 }
