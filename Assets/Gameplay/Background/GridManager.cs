@@ -9,6 +9,8 @@ public class GridManager : MonoBehaviour
 	public float cubeYOffset;		//how much space to leave between rows
 	
 	public GameObject[,] grid;		//xy grid of cubes, each with adjacencies
+
+	public AudioClip pulseSound;
 	
 	public enum Direction {up, down, left, right};
 	private int segmentLength = 5;
@@ -50,6 +52,7 @@ public class GridManager : MonoBehaviour
 	public void gridPulseFromLocation(int posX, int posY)
 	{
 		grid[posX, posY].GetComponent<GridCube>().pulse();
+		audio.PlayOneShot(pulseSound);
 	}
 	
 	//given a player and a score, set which grid points are active
