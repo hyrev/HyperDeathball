@@ -50,6 +50,7 @@ public class GrowShield : BasePowerup {
 
 			activated = true;
 			childActivated = true;
+			audio.Play();
 
 		}
 	}

@@ -38,6 +38,7 @@ public class MultiBall : BasePowerup {
 			newBall = ((Transform) Instantiate (prefab, new Vector3 (0f, 0f, 0f), new Quaternion (0f, 0f, 0f, 0f))).gameObject;
 
 			ball.addCurrentSpeed(newBall);
+			audio.Play();
 		}
 	}
 }

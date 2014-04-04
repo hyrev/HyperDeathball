@@ -52,6 +52,7 @@ public class SpeedUp : BasePowerup
 			ball.changeSpeed (speedModifier);
 
 			ball.addPowerUp("SpeedUp");
+			audio.Play();
 		}
 	}
 }

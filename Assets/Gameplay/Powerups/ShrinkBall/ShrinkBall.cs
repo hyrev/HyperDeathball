@@ -81,6 +81,7 @@ public class ShrinkBall : BasePowerup
 			ball.changeMaterial(Color.yellow);
 
 			ball.addPowerUp("ShrinkBall");
+			audio.Play();
 		}
 	}
 }
