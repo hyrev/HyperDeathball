@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour {
 	private bool speedUpToggle;
 	private bool shrinkBallToggle;
 	private bool growShieldToggle;
+	private bool multiBallToggle;
 
 	private float speedUpValue;
 	private float shrinkBallValue;
@@ -95,6 +96,7 @@ public class MainMenu : MonoBehaviour {
 		speedUpToggle = 	GUI.Toggle (new Rect (Screen.width * 0.1f, Screen.height * 0.20f, Screen.width * 0.35f, 30), speedUpToggle, "SPEED UP");
 		shrinkBallToggle = 	GUI.Toggle (new Rect (Screen.width * 0.1f, Screen.height * 0.28f, Screen.width * 0.35f, 30), shrinkBallToggle, "SHRINK BALL");
 		growShieldToggle = 	GUI.Toggle (new Rect (Screen.width * 0.1f, Screen.height * 0.36f, Screen.width * 0.35f, 30), growShieldToggle, "GROW SHIELD");
+		multiBallToggle = 	GUI.Toggle (new Rect (Screen.width * 0.1f, Screen.height * 0.44f, Screen.width * 0.35f, 30), multiBallToggle, "MULTIBALL");
 
 		speedUpValue = 		GUI.HorizontalSlider(new Rect(Screen.width * 0.5f, Screen.height * 0.22f, Screen.width * 0.35f, 30), speedUpValue, 0.5F, 1.5F);
 		shrinkBallValue = 	GUI.HorizontalSlider(new Rect(Screen.width * 0.5f, Screen.height * 0.30f, Screen.width * 0.35f, 30), shrinkBallValue, 1.5F, 0.5F);
@@ -148,6 +150,7 @@ public class MainMenu : MonoBehaviour {
 		speedUpToggle = 	options.GetComponent<OptionsContainer>().toggles[0];
 		shrinkBallToggle = 	options.GetComponent<OptionsContainer>().toggles[1];
 		growShieldToggle = 	options.GetComponent<OptionsContainer>().toggles[2];
+		multiBallToggle = 	options.GetComponent<OptionsContainer>().toggles[3];
 		
 		speedUpValue =	 	options.GetComponent<OptionsContainer>().values[0];
 		shrinkBallValue =	options.GetComponent<OptionsContainer>().values[1];
@@ -159,6 +162,7 @@ public class MainMenu : MonoBehaviour {
 		options.GetComponent<OptionsContainer>().toggles[0] = speedUpToggle;
 		options.GetComponent<OptionsContainer>().toggles[1] = shrinkBallToggle;
 		options.GetComponent<OptionsContainer>().toggles[2] = growShieldToggle;
+		options.GetComponent<OptionsContainer>().toggles[3] = multiBallToggle;
 		
 		options.GetComponent<OptionsContainer>().values[0] = speedUpValue;
 		options.GetComponent<OptionsContainer>().values[1] = shrinkBallValue;
