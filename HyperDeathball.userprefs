@@ -2,9 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Gameplay\Player\MultiTouchMovement.cs">
     <Files>
-      <File FileName="Assets\Gameplay\Background\GridManager.cs" Line="54" Column="53" />
-      <File FileName="Assets\Gameplay\Ball\Ball.cs" Line="14" Column="29" />
-      <File FileName="Assets\Gameplay\Player\MultiTouchMovement.cs" Line="42" Column="27" />
+      <File FileName="Assets\Gameplay\Player\MultiTouchMovement.cs" Line="25" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
