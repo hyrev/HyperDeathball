@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Gameplay\Player\MultiTouchMovement.cs">
     <Files>
-      <File FileName="Assets\Gameplay\Player\MultiTouchMovement.cs" Line="25" Column="24" />
+      <File FileName="Assets\Gameplay\Player\MultiTouchMovement.cs" Line="32" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

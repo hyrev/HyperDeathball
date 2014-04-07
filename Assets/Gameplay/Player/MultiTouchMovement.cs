@@ -22,13 +22,14 @@ public class MultiTouchMovement : MonoBehaviour {
 			isTouching = false;
 			foreach(Touch touch in Input.touches) {
 				if(touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled) {
-					isTouching = true;
 					//Check to see if we're actually hitting this touch point with our input
 					Ray ray = Camera.main.ScreenPointToRay(touch.position);
 					RaycastHit hit;
 					
 					if (Physics.Raycast(ray, out hit)) {
 						if(hit.collider.name == name) {
+							isTouching = true;
+
 							Vector3 curScreenPoint = new Vector3(touch.position.x,touch.position.y,Camera.main.transform.position.z * -1);
 							curScreenPoint = Camera.main.ScreenToWorldPoint(curScreenPoint);
 							curScreenPoint.z = 0;
