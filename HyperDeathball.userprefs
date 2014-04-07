@@ -2,8 +2,12 @@
   <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Gameplay\Powerups\GrowShield\GrowShield.cs">
     <Files>
+<<<<<<< HEAD
       <File FileName="Assets\Gameplay\Powerups\GrowShield\GrowShield.cs" Line="16" Column="24" />
       <File FileName="Assets\Menus\Scripts\OptionsContainer.cs" Line="1" Column="1" />
+=======
+      <File FileName="Assets\Gameplay\Player\MultiTouchMovement.cs" Line="32" Column="8" />
+>>>>>>> origin
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

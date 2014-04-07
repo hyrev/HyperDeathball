@@ -8,10 +8,11 @@ public class ComputerPlayer : Player
 	public int smartness;
 	
 	private Vector3 destination;
+	private readonly Vector3 nDest = new Vector3(0, 0, 0);
 	
 	void Start()
 	{
-	
+		destination = nDest;
 	}
 	
 	void Update()
@@ -53,11 +54,51 @@ public class ComputerPlayer : Player
 		}
 	}
 	
+	public void recalculateDestination()
+	{
+		Vector3 tempBallPos = ball.position;
+		Vector3 tempBallDir = GameObject.Find("Ball").rigidbody.velocity;
+		
+		for(int x = 0; x < smartness; x++)
+		{
+			//fire a ray from the current temp point
+			Ray ray = new Ray(tempBallPos, tempBallDir);
+			RaycastHit hit = new RaycastHit();
+			
+			//check what the ray hit, and if it hit a wall, continue
+			//if it hit the computer's area, go to that position
+			if(Physics.Raycast(ray, out hit, 50))
+			{
+				if(hit.collider.gameObject.name.CompareTo("TopBound") == 0 ||
+				   hit.collider.gameObject.name.CompareTo("BottomBound") == 0)
+			    {
+			   		tempBallPos = hit.point;
+			   		tempBallDir = Vector3.Reflect(tempBallDir, hit.normal);
+			    }
+				else if(hit.collider.gameObject.name.CompareTo("ComputerArea") == 0 ||
+						hit.collider.gameObject.name.CompareTo("Player2") == 0)
+				{
+					destination = hit.point;
+					break;
+				}
+				else
+				{
+					tempBallPos = hit.point + (tempBallDir.normalized);
+				}
+			}
+		}
+	}
+	
+	public void resetDestination()
+	{
+		destination = nDest;
+	}
+	
 	private void hardMode()
 	{
-		if(destination != null)
+		if(destination != nDest)
 		{
-			
+			easyMode(destination);
 		}
 		else
 		{

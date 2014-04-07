@@ -51,6 +51,13 @@ public class Ball : MonoBehaviour
 			//increment player 2's score
 			ScoreManager score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 			score.player2Scores();
+			
+			//reset the computer's destination if there is one
+			ComputerPlayer comp = GameObject.Find("Player2").GetComponent<ComputerPlayer>();
+			if(comp != null)
+			{
+				comp.resetDestination();
+			}
 		}
 		
 		//ball has entered right player's net
@@ -68,6 +75,13 @@ public class Ball : MonoBehaviour
 			//increment player 1's score
 			ScoreManager score = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 			score.player1Scores();
+			
+			//reset the computer's destination if there is one
+			ComputerPlayer comp = GameObject.Find("Player2").GetComponent<ComputerPlayer>();
+			if(comp != null)
+			{
+				comp.resetDestination();
+			}
 		}
 		
 		//gradually accumulate speed every time the ball respawns
@@ -96,6 +110,26 @@ public class Ball : MonoBehaviour
 
 		//increase ball speed
 		changeSpeed(bounceIncrement);
+		
+		//if the player hit the ball, have the computer go find it
+		if(c.gameObject.name.CompareTo("Player1") == 0)
+		{
+			ComputerPlayer comp = GameObject.Find("Player2").GetComponent<ComputerPlayer>();
+			if(comp != null)
+			{
+				comp.recalculateDestination();
+			}
+		}
+		
+		//if the computer hit the ball, reset its destination
+		if(c.gameObject.name.CompareTo("Player2") == 0)
+		{
+			ComputerPlayer comp = GameObject.Find("Player2").GetComponent<ComputerPlayer>();
+			if(comp != null)
+			{
+				comp.resetDestination();
+			}
+		}
 		
 		colliding = false;
 	}
@@ -149,6 +183,11 @@ public class Ball : MonoBehaviour
 
 		ball.GetComponent<Ball>().speed = currentSpeed;
 
+	}
+	
+	public float getDirection()
+	{
+		return currentAngle;
 	}
 	
 	private float calculateDirection(float velocityInX, float velocityInY)
